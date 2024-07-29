@@ -436,17 +436,17 @@ if __name__=='__main__':
   ori_dir=os.getcwd()
 
   args,mode,ori_data=init()
-  # if not args.eval:
-  prior_datas=get_data_prior(Baseline_model)
-  np.save('prior_datas.npy',prior_datas)
+  if not args.precomputed:
+    prior_datas=get_data_prior(Baseline_model)
+    np.save('prior_datas.npy',prior_datas)
   prior_datas=np.load('prior_datas.npy',allow_pickle=True)
 
   os.chdir(ori_dir)
 
   args,mode,ori_data=init(post=True,keepconsistent=True)
-  # if not args.eval:
-  post_datas=get_data_post(Drift_rate_model)
-  np.save('post_datas.npy',post_datas)
+  if not args.precomputed:
+    post_datas=get_data_post(Drift_rate_model)
+    np.save('post_datas.npy',post_datas)
   post_datas=np.load('post_datas.npy',allow_pickle=True)
 
   os.chdir('..')

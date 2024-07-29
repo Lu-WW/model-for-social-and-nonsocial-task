@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
+import warnings
+warnings.filterwarnings('ignore')
 
 
 def draw_all_sub(model_i):
@@ -69,7 +71,7 @@ def draw_all_sub(model_i):
     
     pass
 
-  all_sub_fig.savefig(f'all_sub_{names[model_i]}.svg')
+  all_sub_fig.savefig(f'./figs/all_sub_{names[model_i]}.svg')
   plt.close()
 
 
@@ -149,7 +151,7 @@ def draw_all_sub(model_i):
 
   
 
-  plt.savefig(f'all_sub_ave_{names[model_i]}.svg')
+  plt.savefig(f'./figs/all_sub_ave_{names[model_i]}.svg')
   plt.show(block=False)
 
 
@@ -609,10 +611,11 @@ if __name__=='__main__':
       labs.append('t0')
     draw_paras(i,labs)
 
-  #if not args.eval:
+  if not args.precomputed:
+    get_sub_beta(ori_data)
+    get_beta()
   draw_all_sub(0)
-  get_sub_beta()
-  get_beta()
+
 
   draw_sub_beta()
   draw_pie()

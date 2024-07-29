@@ -607,7 +607,8 @@ if __name__=='__main__':
   for i,model in enumerate(models):
     if not args.eval:
       fit(model,ori_data,mode)
-    eval(model,ori_data,mode)
+    if not args.precomputed:
+      eval(model,ori_data,mode)
 
 
 
